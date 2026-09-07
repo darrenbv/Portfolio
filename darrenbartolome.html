@@ -606,52 +606,6 @@ button{
   font-weight:600;
 }
 
-.flip-zone{
-  position:absolute;
-  top:var(--top-clear);
-  bottom:var(--bottom-clear);
-  z-index:36;
-  display:flex;
-  align-items:center;
-  width:clamp(72px,9vw,150px);
-}
-
-.flip-left{
-  left:0;
-  justify-content:flex-start;
-  padding-left:clamp(10px,1.6vw,22px);
-}
-
-.flip-right{
-  right:0;
-  justify-content:flex-end;
-  padding-right:clamp(10px,1.6vw,22px);
-}
-
-.flip-zone.off{
-  opacity:0;
-  pointer-events:none;
-}
-
-.arrow{
-  display:grid;
-  place-items:center;
-  width:54px;
-  height:54px;
-  border:1px solid var(--stroke);
-  border-radius:50%;
-  background:var(--panel);
-  opacity:.4;
-}
-
-.arrow svg{
-  width:22px;
-  height:22px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:2.4;
-}
-
 .deck{
   position:absolute;
   inset:0;
@@ -1207,7 +1161,6 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   .cost-hero{grid-template-columns:1fr}
 }
 
-/* Mobile: drawer panel and drawer button are completely hidden. */
 @media (max-width:899px){
   .dock,.dock-toggle{
     display:none!important;
@@ -1274,7 +1227,6 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   }
 
   .cost-hero{padding:24px}
-  .flip-zone{display:none}
 
   .controls{
     padding-bottom:14px;
@@ -1470,32 +1422,6 @@ try{"anchor";}catch(e){}
       <span class="num">09</span><span class="txt">Connect</span>
     </button>
   </nav>
-
-  <button
-    class="flip-zone flip-left off"
-    id="flip-left"
-    type="button"
-    aria-label="Previous page"
-  >
-    <span class="arrow">
-      <svg viewBox="0 0 24 24">
-        <polyline points="15 5 8 12 15 19"></polyline>
-      </svg>
-    </span>
-  </button>
-
-  <button
-    class="flip-zone flip-right"
-    id="flip-right"
-    type="button"
-    aria-label="Next page"
-  >
-    <span class="arrow">
-      <svg viewBox="0 0 24 24">
-        <polyline points="9 5 16 12 9 19"></polyline>
-      </svg>
-    </span>
-  </button>
 
   <div class="controls">
     <div class="pager">
@@ -1944,8 +1870,6 @@ try{"anchor";}catch(e){}
   var curEl=document.getElementById("cur");
   var totEl=document.getElementById("tot");
   var prog=document.getElementById("progress");
-  var flipLeft=document.getElementById("flip-left");
-  var flipRight=document.getElementById("flip-right");
   var dock=document.getElementById("dock");
   var dockToggle=document.getElementById("dockToggle");
   var dockClose=document.getElementById("dockClose");
@@ -1978,9 +1902,6 @@ try{"anchor";}catch(e){}
 
     prev.disabled=cur===0;
     next.disabled=cur===total-1;
-
-    flipLeft.classList.toggle("off",cur===0);
-    flipRight.classList.toggle("off",cur===total-1);
 
     dockItems.forEach(function(item){
       item.classList.toggle(
@@ -2072,8 +1993,6 @@ try{"anchor";}catch(e){}
 
   prev.addEventListener("click",previousPage);
   next.addEventListener("click",nextPage);
-  flipLeft.addEventListener("click",previousPage);
-  flipRight.addEventListener("click",nextPage);
 
   if(dockToggle){
     dockToggle.addEventListener("click",function(event){
