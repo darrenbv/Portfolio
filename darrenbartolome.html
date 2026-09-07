@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Darren Bartolome Victorino — interactive full-screen portfolio. Banking, risk, compliance, process automation and digital transformation specialist.">
 <meta name="theme-color" content="#fffefb">
 <title>Darren Bartolome Victorino · Interactive Portfolio</title>
@@ -21,12 +21,12 @@
   --ease-io:cubic-bezier(.65,0,.35,1);
   --ease-book:cubic-bezier(.42,.04,.28,1);
   --pad:clamp(26px,5vw,84px);
-  --top-clear:132px;--bottom-clear:140px;
+  --top-clear:132px;--bottom-clear:112px;
 }
 
 body.light{
   --bg:#fffefb;--bg-2:#f8f4f0;
-  --panel:rgba(255,255,255,.86);--panel-solid:#ffffff;
+  --panel:rgba(255,255,255,.86);--panel-solid:#fff;
   --stroke:rgba(32,21,21,.12);--stroke-str:rgba(32,21,21,.26);
   --ink:#201515;--soft:#605d52;--faint:#939084;
   --a1:#ff4f00;--a2:#ff6a2b;--a3:#2b2358;
@@ -52,7 +52,7 @@ button{
   font:inherit;
   color:inherit;
   cursor:pointer;
-  border:none;
+  border:0;
   background:none;
   -webkit-tap-highlight-color:transparent;
 }
@@ -71,8 +71,7 @@ button{
   pointer-events:none;
 }
 
-.ambient::before,
-.ambient::after{
+.ambient::before,.ambient::after{
   content:"";
   position:absolute;
   border-radius:50%;
@@ -135,12 +134,12 @@ button{
   position:absolute;
   top:0;
   left:0;
-  height:3px;
   width:0;
+  height:3px;
+  z-index:46;
   background:var(--grad);
   box-shadow:var(--glow);
   transition:width .6s var(--ease);
-  z-index:46;
 }
 
 .topbar{
@@ -149,13 +148,13 @@ button{
   left:0;
   right:0;
   z-index:44;
-  transition:padding-left .3s var(--ease);
   display:flex;
   align-items:flex-start;
   justify-content:space-between;
   gap:14px;
-  padding:18px clamp(18px,4vw,42px);
   min-height:var(--top-clear);
+  padding:18px clamp(18px,4vw,42px);
+  transition:padding-left .3s var(--ease);
 }
 
 .topbar::before{
@@ -163,7 +162,12 @@ button{
   position:absolute;
   inset:0;
   pointer-events:none;
-  background:linear-gradient(180deg,var(--bg) 30%,color-mix(in srgb,var(--bg) 55%,transparent) 70%,transparent);
+  background:linear-gradient(
+    180deg,
+    var(--bg) 30%,
+    color-mix(in srgb,var(--bg) 55%,transparent) 70%,
+    transparent
+  );
 }
 
 .brand{
@@ -177,10 +181,10 @@ button{
 
 .brand-mark{
   flex:0 0 auto;
-  width:42px;
-  height:42px;
   display:grid;
   place-items:center;
+  width:42px;
+  height:42px;
   border-radius:12px;
   background:var(--grad);
   color:#fff;
@@ -202,11 +206,11 @@ button{
 
 .brand-txt span{
   display:block;
+  margin-top:2px;
+  color:var(--soft);
   font-size:.62rem;
   letter-spacing:.18em;
   text-transform:uppercase;
-  color:var(--soft);
-  margin-top:2px;
 }
 
 .tools{
@@ -217,18 +221,18 @@ button{
 }
 
 .tool{
-  width:42px;
-  height:42px;
   display:grid;
   place-items:center;
-  border-radius:11px;
+  width:42px;
+  height:42px;
   border:1px solid var(--stroke);
+  border-radius:11px;
   background:var(--panel);
   color:var(--ink);
   font-size:1rem;
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
-  transition:transform .2s var(--ease),border-color .2s ease,background .2s ease;
+  transition:transform .2s var(--ease),border-color .2s ease;
 }
 
 .tool:hover{
@@ -239,9 +243,9 @@ button{
 .tool svg{
   width:18px;
   height:18px;
+  fill:none;
   stroke:currentColor;
   stroke-width:2;
-  fill:none;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
@@ -250,13 +254,13 @@ button{
   display:flex;
   align-items:center;
   height:42px;
-  border-radius:12px;
   overflow:hidden;
-  background:color-mix(in srgb,var(--panel-solid) 90%,transparent);
   border:1px solid var(--stroke);
+  border-radius:12px;
+  background:color-mix(in srgb,var(--panel-solid) 90%,transparent);
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
-  box-shadow:0 10px 26px rgba(20,20,35,.10);
+  box-shadow:0 10px 26px rgba(20,20,35,.1);
   transition:border-color .2s ease,box-shadow .2s ease,transform .2s var(--ease);
 }
 
@@ -267,10 +271,10 @@ button{
 }
 
 .linkedin-open{
-  height:100%;
   display:flex;
   align-items:center;
   gap:8px;
+  height:100%;
   padding:0 12px;
   color:var(--ink);
   font-size:.74rem;
@@ -279,17 +283,17 @@ button{
 }
 
 .linkedin-open svg{
+  flex:0 0 auto;
   width:17px;
   height:17px;
   fill:#0a66c2;
-  flex:0 0 auto;
 }
 
 .linkedin-copy{
-  width:36px;
-  height:100%;
   display:grid;
   place-items:center;
+  width:36px;
+  height:100%;
   border-left:1px solid var(--stroke);
   color:var(--faint);
   transition:background .2s ease,color .2s ease;
@@ -303,9 +307,9 @@ button{
 .linkedin-copy svg{
   width:15px;
   height:15px;
+  fill:none;
   stroke:currentColor;
   stroke-width:2;
-  fill:none;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
@@ -316,21 +320,21 @@ button{
   position:absolute;
   top:50%;
   left:clamp(14px,1.6vw,24px);
-  transform:translateY(-50%);
   z-index:45;
   display:flex;
   align-items:center;
   gap:10px;
   height:46px;
   padding:6px 13px 6px 6px;
+  border:1px solid color-mix(in srgb,var(--ink) 12%,transparent);
   border-radius:15px;
   background:color-mix(in srgb,var(--panel-solid) 90%,transparent);
-  border:1px solid color-mix(in srgb,var(--ink) 12%,transparent);
   color:var(--ink);
+  transform:translateY(-50%);
   backdrop-filter:blur(22px) saturate(1.3);
   -webkit-backdrop-filter:blur(22px) saturate(1.3);
   box-shadow:0 14px 34px rgba(20,20,35,.14),inset 0 1px 0 rgba(255,255,255,.5);
-  transition:transform .22s var(--ease),border-color .22s ease,box-shadow .22s ease;
+  transition:transform .22s var(--ease),border-color .22s ease;
 }
 
 .dock-toggle::after{
@@ -350,8 +354,8 @@ button{
 }
 
 .dock-toggle[aria-expanded="true"]::after{
-  transform:rotate(225deg) translate(-1px,-1px);
   border-color:var(--a1);
+  transform:rotate(225deg) translate(-1px,-1px);
 }
 
 .dock-toggle .ico{
@@ -368,9 +372,9 @@ button{
 .dock-toggle .ico svg{
   width:17px;
   height:17px;
+  fill:none;
   stroke:currentColor;
   stroke-width:2.2;
-  fill:none;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
@@ -380,22 +384,21 @@ button{
   align-items:center;
   gap:7px;
   white-space:nowrap;
-  text-align:left;
 }
 
 .dock-toggle .cur::before{
   content:"Sections";
+  color:var(--ink);
   font-size:.74rem;
   font-weight:850;
-  color:var(--ink);
 }
 
 .dock-toggle .cur #toggleName{display:none}
 
 .dock-toggle .cur em{
-  font-style:normal;
   color:var(--faint);
   font-size:.65rem;
+  font-style:normal;
   font-weight:750;
 }
 
@@ -403,26 +406,26 @@ button{
   position:absolute;
   top:50%;
   left:clamp(16px,1.8vw,28px);
-  transform:translateY(-50%) scale(.96);
-  transform-origin:left center;
   z-index:46;
   display:flex;
   flex-direction:column;
   gap:3px;
-  padding:12px 12px 13px;
   width:190px;
+  max-height:calc(100vh - 40px);
+  padding:12px 12px 13px;
+  overflow-y:auto;
+  border:1px solid var(--stroke);
   border-radius:20px;
   background:var(--panel);
-  border:1px solid var(--stroke);
-  backdrop-filter:blur(22px) saturate(1.2);
-  -webkit-backdrop-filter:blur(22px) saturate(1.2);
-  box-shadow:0 26px 64px -18px rgba(20,40,80,.32),inset 0 1px 0 rgba(255,255,255,.35);
   opacity:0;
   visibility:hidden;
   pointer-events:none;
+  transform:translateY(-50%) scale(.96);
+  transform-origin:left center;
+  backdrop-filter:blur(22px) saturate(1.2);
+  -webkit-backdrop-filter:blur(22px) saturate(1.2);
+  box-shadow:0 26px 64px -18px rgba(20,40,80,.32),inset 0 1px 0 rgba(255,255,255,.35);
   transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s;
-  max-height:calc(100vh - 40px);
-  overflow-y:auto;
 }
 
 .dock.open{
@@ -464,21 +467,21 @@ button{
 
 .dock-close{
   flex:0 0 auto;
-  width:24px;
-  height:24px;
   display:grid;
   place-items:center;
+  width:24px;
+  height:24px;
+  border:1px solid var(--stroke);
   border-radius:8px;
   color:var(--faint);
-  border:1px solid var(--stroke);
 }
 
 .dock-close svg{
   width:13px;
   height:13px;
+  fill:none;
   stroke:currentColor;
   stroke-width:2.4;
-  fill:none;
   stroke-linecap:round;
 }
 
@@ -496,10 +499,10 @@ button{
 
 .dock-item .num{
   flex:0 0 auto;
-  width:24px;
-  height:24px;
   display:grid;
   place-items:center;
+  width:24px;
+  height:24px;
   border-radius:8px;
   background:var(--stroke);
   color:var(--faint);
@@ -533,108 +536,84 @@ button{
 .dock-item.on::before{
   content:"";
   position:absolute;
-  left:-12px;
   top:50%;
-  transform:translateY(-50%);
+  left:-12px;
   width:3px;
   height:20px;
   border-radius:9px;
   background:var(--grad);
+  transform:translateY(-50%);
 }
 
 .controls{
   position:absolute;
+  right:0;
   bottom:0;
   left:0;
-  right:0;
   z-index:44;
-  transition:padding-left .3s var(--ease);
   display:flex;
-  flex-direction:column;
   align-items:center;
-  gap:10px;
+  justify-content:center;
   padding:0 22px 20px;
   pointer-events:none;
+  transition:padding-left .3s var(--ease);
 }
 
 .controls>*{pointer-events:auto}
-
-.hint{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  padding:6px 14px;
-  border-radius:999px;
-  background:var(--panel);
-  border:1px solid var(--stroke);
-  color:var(--faint);
-  font-size:.7rem;
-  font-weight:700;
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-}
-
-.hint svg{
-  width:14px;
-  height:14px;
-  stroke:currentColor;
-  stroke-width:1.8;
-  fill:none;
-}
-
-.hint .sep{
-  width:3px;
-  height:3px;
-  border-radius:50%;
-  background:var(--stroke-str);
-}
-
-.hint b{color:var(--soft);font-weight:800}
 
 .pager{
   display:flex;
   align-items:center;
   gap:8px;
   padding:8px;
+  border:1px solid var(--stroke);
   border-radius:999px;
   background:var(--panel);
-  border:1px solid var(--stroke);
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
   box-shadow:0 16px 40px -14px rgba(20,40,80,.3);
 }
 
 .nav{
-  width:46px;
-  height:46px;
   display:grid;
   place-items:center;
-  border-radius:50%;
+  width:46px;
+  height:46px;
   border:1px solid var(--stroke);
+  border-radius:50%;
   color:var(--ink);
   font-size:1.15rem;
 }
 
-.nav:disabled{opacity:.3;cursor:not-allowed}
+.nav:disabled{
+  opacity:.3;
+  cursor:not-allowed;
+}
 
 .counter{
   min-width:96px;
-  text-align:center;
-  font-weight:800;
+  color:var(--ink);
   font-size:.9rem;
+  font-weight:800;
+  text-align:center;
 }
 
 .counter #cur{color:var(--a1)}
-.counter em{font-style:normal;color:var(--faint);font-weight:600}
+
+.counter em{
+  color:var(--faint);
+  font-style:normal;
+  font-weight:600;
+}
 
 .flip-zone{
   position:absolute;
   top:var(--top-clear);
   bottom:var(--bottom-clear);
   z-index:36;
-  width:clamp(72px,9vw,150px);
   display:flex;
   align-items:center;
+  width:clamp(72px,9vw,150px);
 }
 
 .flip-left{
@@ -649,25 +628,28 @@ button{
   padding-right:clamp(10px,1.6vw,22px);
 }
 
-.flip-zone.off{opacity:0;pointer-events:none}
+.flip-zone.off{
+  opacity:0;
+  pointer-events:none;
+}
 
 .arrow{
-  width:54px;
-  height:54px;
   display:grid;
   place-items:center;
+  width:54px;
+  height:54px;
+  border:1px solid var(--stroke);
   border-radius:50%;
   background:var(--panel);
-  border:1px solid var(--stroke);
   opacity:.4;
 }
 
 .arrow svg{
   width:22px;
   height:22px;
+  fill:none;
   stroke:currentColor;
   stroke-width:2.4;
-  fill:none;
 }
 
 .deck{
@@ -690,8 +672,8 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   display:grid;
   align-content:start;
   padding:var(--top-clear) var(--pad) var(--bottom-clear);
-  overflow-y:auto;
   overflow-x:hidden;
+  overflow-y:auto;
   opacity:0;
   visibility:hidden;
   transform-origin:left center;
@@ -705,28 +687,28 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .page.active{
+  z-index:2;
   opacity:1;
   visibility:visible;
-  z-index:2;
 }
 
 .page.hold{
+  z-index:1;
   opacity:1;
   visibility:visible;
-  z-index:1;
 }
 
 .page.flip-out{
+  z-index:6;
   opacity:1;
   visibility:visible;
-  z-index:6;
   animation:leafOut .9s var(--ease-book) forwards;
 }
 
 .page.flip-in{
+  z-index:6;
   opacity:1;
   visibility:visible;
-  z-index:6;
   animation:leafIn .9s var(--ease-book) forwards;
 }
 
@@ -773,16 +755,16 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 
 .h1{
   font-size:clamp(2.4rem,6vw,5.4rem);
+  font-weight:800;
   line-height:.94;
   letter-spacing:-.055em;
-  font-weight:800;
 }
 
 .h2{
   font-size:clamp(1.9rem,4.4vw,3.4rem);
+  font-weight:800;
   line-height:1;
   letter-spacing:-.045em;
-  font-weight:800;
 }
 
 .grad{
@@ -793,22 +775,23 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .lead{
+  max-width:56ch;
   color:var(--soft);
   font-size:clamp(1rem,1.5vw,1.18rem);
-  max-width:56ch;
   line-height:1.6;
 }
 
 .glass{
-  background:var(--panel);
   border:1px solid var(--stroke);
   border-radius:var(--r-md);
+  background:var(--panel);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
 }
 
 .chip{
   display:inline-flex;
+  margin:0 8px 8px 0;
   padding:8px 12px;
   border:1px solid var(--stroke);
   border-radius:999px;
@@ -816,14 +799,13 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   color:var(--soft);
   font-size:.76rem;
   font-weight:650;
-  margin:0 8px 8px 0;
 }
 
 .cover-wrap{
-  max-width:960px;
   display:flex;
   flex-direction:column;
   align-items:center;
+  max-width:960px;
 }
 
 .badge{
@@ -834,9 +816,9 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   border:1px solid var(--stroke);
   border-radius:999px;
   background:var(--panel);
+  color:var(--soft);
   font-size:.72rem;
   font-weight:750;
-  color:var(--soft);
 }
 
 .badge .live{
@@ -847,57 +829,71 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .cover-wrap .h1{margin-top:26px}
-.cover-wrap .lead{margin:24px auto 0;text-align:center}
+
+.cover-wrap .lead{
+  margin:24px auto 0;
+  text-align:center;
+}
+
 .cover-tags{margin-top:30px}
 
 .split{
   display:grid;
   grid-template-columns:1.05fr .95fr;
-  gap:clamp(26px,4vw,64px);
   align-items:center;
+  gap:clamp(26px,4vw,64px);
   width:100%;
   max-width:1240px;
   margin:auto;
 }
 
 .about-head .lead{margin-top:22px}
-.principles{display:grid;gap:14px}
+
+.principles{
+  display:grid;
+  gap:14px;
+}
 
 .principle{
   display:grid;
   grid-template-columns:52px 1fr;
-  gap:16px;
   align-items:center;
+  gap:16px;
   padding:20px;
 }
 
 .principle .n{
-  width:52px;
-  height:52px;
   display:grid;
   place-items:center;
+  width:52px;
+  height:52px;
   border-radius:14px;
   background:linear-gradient(140deg,rgba(255,79,0,.14),rgba(255,150,80,.12));
   color:var(--a1);
+  font-size:.82rem;
   font-weight:950;
 }
 
-.principle p{margin-top:4px;color:var(--soft);font-size:.86rem}
+.principle p{
+  margin-top:4px;
+  color:var(--soft);
+  font-size:.86rem;
+}
 
 .center-head{
+  width:100%;
   max-width:1240px;
   margin:0 auto 34px;
-  width:100%;
 }
 
 .cost-hero{
+  display:grid;
+  grid-template-columns:1.15fr 1fr;
+  align-items:center;
+  gap:26px;
   width:100%;
   max-width:1240px;
   margin:0 auto 20px;
-  display:grid;
-  grid-template-columns:1.15fr 1fr;
-  gap:26px;
-  align-items:center;
   padding:30px 32px;
 }
 
@@ -911,12 +907,13 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 
 .cost-hero .big{
   margin-top:10px;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
   font-size:clamp(3rem,6.2vw,5rem);
   font-weight:900;
   line-height:.92;
-  background:var(--grad);
-  -webkit-background-clip:text;
-  color:transparent;
 }
 
 .cost-hero .sub{
@@ -926,22 +923,25 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   line-height:1.5;
 }
 
-.cost-breakdown{display:grid;gap:12px}
+.cost-breakdown{
+  display:grid;
+  gap:12px;
+}
 
 .cost-item{
   display:flex;
   align-items:center;
   gap:14px;
   padding:16px 18px;
-  border-radius:14px;
   border:1px solid var(--stroke);
+  border-radius:14px;
 }
 
 .cost-item .amt{
   min-width:112px;
+  color:var(--a1);
   font-size:1.5rem;
   font-weight:900;
-  color:var(--a1);
 }
 
 .cost-item small{
@@ -960,22 +960,31 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .metric{
-  padding:26px;
-  min-height:180px;
   display:flex;
   flex-direction:column;
+  min-height:180px;
+  padding:26px;
 }
 
 .metric .num{
-  font-size:clamp(2.2rem,4.2vw,3.3rem);
-  font-weight:900;
   background:var(--grad);
   -webkit-background-clip:text;
+  background-clip:text;
   color:transparent;
+  font-size:clamp(2.2rem,4.2vw,3.3rem);
+  font-weight:900;
 }
 
-.metric h3{margin-top:auto;padding-top:16px}
-.metric p{margin-top:6px;color:var(--soft);font-size:.8rem}
+.metric h3{
+  margin-top:auto;
+  padding-top:16px;
+}
+
+.metric p{
+  margin-top:6px;
+  color:var(--soft);
+  font-size:.8rem;
+}
 
 .proj-grid{
   display:grid;
@@ -987,9 +996,9 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .proj{
-  padding:26px;
   display:flex;
   flex-direction:column;
+  padding:26px;
 }
 
 .proj-top{
@@ -999,10 +1008,10 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .proj-badge{
-  width:50px;
-  height:50px;
   display:grid;
   place-items:center;
+  width:50px;
+  height:50px;
   border-radius:13px;
   background:rgba(255,79,0,.12);
   color:var(--a1);
@@ -1010,44 +1019,35 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .proj-cat{
+  color:var(--faint);
   font-size:.64rem;
   font-weight:800;
   text-transform:uppercase;
-  color:var(--faint);
 }
 
 .proj h3{margin-top:18px}
 
 .proj p{
+  flex:1;
   margin-top:10px;
   color:var(--soft);
   font-size:.86rem;
-  flex:1;
 }
 
 .proj .impact{
   margin-top:16px;
+  color:var(--a1);
   font-size:.82rem;
   font-weight:800;
-  color:var(--a1);
 }
 
 .proj .impact::before{content:"↗ "}
 
-.proj .cost-tag{
-  margin-top:10px;
-  padding:7px 13px;
-  border-radius:999px;
-  color:var(--a1);
-  font-size:.76rem;
-  font-weight:850;
-}
-
 .timeline{
+  position:relative;
   width:100%;
   max-width:1240px;
   margin:auto;
-  position:relative;
   padding-left:34px;
 }
 
@@ -1086,8 +1086,18 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .tl h3{margin-top:6px}
-.tl h4{margin-top:3px;color:var(--soft);font-size:.84rem}
-.tl p{margin-top:8px;color:var(--soft);font-size:.85rem}
+
+.tl h4{
+  margin-top:3px;
+  color:var(--soft);
+  font-size:.84rem;
+}
+
+.tl p{
+  margin-top:8px;
+  color:var(--soft);
+  font-size:.85rem;
+}
 
 .exp-grid{
   display:grid;
@@ -1101,10 +1111,10 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 .exp{padding:26px}
 
 .exp .ic{
-  width:48px;
-  height:48px;
   display:grid;
   place-items:center;
+  width:48px;
+  height:48px;
   border-radius:13px;
   background:rgba(255,79,0,.12);
   color:var(--a1);
@@ -1124,33 +1134,58 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 .cred{padding:34px}
-.cred .lbl{color:var(--a1);font-size:.7rem;font-weight:850;text-transform:uppercase}
-.cred h3{margin-top:14px;font-size:1.35rem}
-.cred p{margin-top:14px;color:var(--soft);font-size:.88rem}
+
+.cred .lbl{
+  color:var(--a1);
+  font-size:.7rem;
+  font-weight:850;
+  text-transform:uppercase;
+}
+
+.cred h3{
+  margin-top:14px;
+  font-size:1.35rem;
+}
+
+.cred p{
+  margin-top:14px;
+  color:var(--soft);
+  font-size:.88rem;
+}
 
 .contact-wrap{
-  max-width:900px;
   display:flex;
   flex-direction:column;
   align-items:center;
+  max-width:900px;
 }
 
 .contact-wrap .h2{margin-top:16px}
-.contact-wrap .lead{margin:20px auto 0;text-align:center}
-.sig{margin-top:30px;color:var(--faint);font-size:.78rem}
+
+.contact-wrap .lead{
+  margin:20px auto 0;
+  text-align:center;
+}
+
+.sig{
+  margin-top:30px;
+  color:var(--faint);
+  font-size:.78rem;
+}
 
 .toast{
   position:fixed;
-  left:50%;
   bottom:96px;
-  transform:translateX(-50%) translateY(14px);
+  left:50%;
   z-index:1000;
   padding:12px 18px;
+  border:1px solid var(--stroke);
   border-radius:12px;
   background:var(--panel-solid);
-  border:1px solid var(--stroke);
   opacity:0;
   pointer-events:none;
+  transform:translateX(-50%) translateY(14px);
+  transition:opacity .2s ease,transform .2s ease;
 }
 
 .toast.show{
@@ -1172,10 +1207,9 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   .cost-hero{grid-template-columns:1fr}
 }
 
-/* MOBILE: COMPLETELY HIDE DRAWER AND DRAWER BUTTON */
+/* Mobile: drawer panel and drawer button are completely hidden. */
 @media (max-width:899px){
-  .dock,
-  .dock-toggle{
+  .dock,.dock-toggle{
     display:none!important;
     visibility:hidden!important;
     opacity:0!important;
@@ -1185,9 +1219,9 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   body.dock-open .deck{
     left:0!important;
     opacity:1!important;
-    transform:none!important;
     filter:none!important;
     -webkit-filter:none!important;
+    transform:none!important;
   }
 
   body.dock-open .topbar{
@@ -1216,13 +1250,13 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   :root{
     --pad:22px;
     --top-clear:120px;
-    --bottom-clear:126px;
+    --bottom-clear:108px;
   }
 
   .linkedin-open{
+    justify-content:center;
     width:38px;
     padding:0;
-    justify-content:center;
   }
 
   .linkedin-open span{display:none}
@@ -1235,22 +1269,23 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   .h1{font-size:clamp(2.2rem,10vw,3.4rem)}
   .h2{font-size:clamp(1.7rem,7.5vw,2.4rem)}
 
-  .proj-grid,
-  .cred-grid,
-  .metrics,
-  .exp-grid{
+  .proj-grid,.cred-grid,.metrics,.exp-grid{
     grid-template-columns:1fr;
   }
 
   .cost-hero{padding:24px}
   .flip-zone{display:none}
-  .hint .sep,.hint span:last-child{display:none}
+
+  .controls{
+    padding-bottom:14px;
+  }
 }
 
 @media (max-width:420px){
   :root{
     --pad:16px;
     --top-clear:112px;
+    --bottom-clear:104px;
   }
 
   .h1{font-size:2rem}
@@ -1263,15 +1298,16 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 }
 
 @media print{
-  html,body{overflow:visible;height:auto}
+  html,body{height:auto;overflow:visible}
   .chrome,.ambient,.grid-overlay,.toast{display:none!important}
   .deck{position:static;perspective:none}
+
   .page{
     position:static;
+    padding:30px;
     opacity:1!important;
     visibility:visible!important;
     transform:none!important;
-    padding:30px;
     page-break-after:always;
   }
 }
@@ -1293,6 +1329,7 @@ try{"anchor";}catch(e){}
   <div class="topbar">
     <div class="brand">
       <span class="brand-mark">DV</span>
+
       <span class="brand-txt">
         <b>Darren Bartolome Victorino</b>
         <span>Interactive Portfolio</span>
@@ -1301,71 +1338,175 @@ try{"anchor";}catch(e){}
 
     <div class="tools">
       <div class="linkedin-global">
-        <a class="linkedin-open" href="https://www.linkedin.com/in/darrenbartolome/" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.33V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.1 20.45H3.54V9H7.1v11.45z"></path></svg>
+        <a
+          class="linkedin-open"
+          href="https://www.linkedin.com/in/darrenbartolome/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Open LinkedIn profile"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.33V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.1 20.45H3.54V9H7.1v11.45z"></path>
+          </svg>
+
           <span>LinkedIn</span>
         </a>
 
-        <button class="linkedin-copy" id="copyLinkedIn" type="button">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"></path></svg>
+        <button
+          class="linkedin-copy"
+          id="copyLinkedIn"
+          type="button"
+          aria-label="Copy LinkedIn profile URL"
+          title="Copy LinkedIn profile URL"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+            <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"></path>
+          </svg>
         </button>
       </div>
 
-      <button class="tool" id="theme" type="button">◐</button>
+      <button
+        class="tool"
+        id="theme"
+        type="button"
+        aria-label="Toggle theme"
+        title="Toggle theme"
+      >
+        ◐
+      </button>
 
-      <button class="tool" type="button" onclick="window.__deckShare()">
-        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.6 10.6l6.8-4.2"></path><path d="M8.6 13.4l6.8 4.2"></path></svg>
+      <button
+        class="tool"
+        type="button"
+        aria-label="Share portfolio"
+        title="Share portfolio"
+        onclick="window.__deckShare()"
+      >
+        <svg viewBox="0 0 24 24">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <path d="M8.6 10.6l6.8-4.2"></path>
+          <path d="M8.6 13.4l6.8 4.2"></path>
+        </svg>
       </button>
     </div>
   </div>
 
-  <nav class="rail" id="rail"></nav>
+  <nav class="rail" id="rail" aria-label="Section navigation"></nav>
 
-  <button class="dock-toggle" id="dockToggle" type="button" aria-expanded="false">
+  <button
+    class="dock-toggle"
+    id="dockToggle"
+    type="button"
+    aria-label="Open section navigation"
+    aria-expanded="false"
+  >
     <span class="ico">
-      <svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="14" y2="17"></line></svg>
+      <svg viewBox="0 0 24 24">
+        <line x1="4" y1="7" x2="20" y2="7"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="17" x2="14" y2="17"></line>
+      </svg>
     </span>
-    <span class="cur"><span id="toggleName">Intro</span><em id="toggleNum">01/09</em></span>
+
+    <span class="cur">
+      <span id="toggleName">Intro</span>
+      <em id="toggleNum">01/09</em>
+    </span>
   </button>
 
-  <nav class="dock" id="dock">
+  <nav class="dock" id="dock" aria-label="Quick page navigation">
     <div class="dock-head">
       <span class="dock-title">Jump to page</span>
-      <button class="dock-close" id="dockClose" type="button">
-        <svg viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+
+      <button
+        class="dock-close"
+        id="dockClose"
+        type="button"
+        aria-label="Close section navigation"
+      >
+        <svg viewBox="0 0 24 24">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
       </button>
     </div>
 
-    <button class="dock-item on" data-i="0"><span class="num">01</span><span class="txt">Intro</span></button>
-    <button class="dock-item" data-i="1"><span class="num">02</span><span class="txt">About</span></button>
-    <button class="dock-item" data-i="2"><span class="num">03</span><span class="txt">Impact</span></button>
-    <button class="dock-item" data-i="3"><span class="num">04</span><span class="txt">Projects I</span></button>
-    <button class="dock-item" data-i="4"><span class="num">05</span><span class="txt">Projects II</span></button>
-    <button class="dock-item" data-i="5"><span class="num">06</span><span class="txt">Experience</span></button>
-    <button class="dock-item" data-i="6"><span class="num">07</span><span class="txt">Expertise</span></button>
-    <button class="dock-item" data-i="7"><span class="num">08</span><span class="txt">Credentials</span></button>
-    <button class="dock-item" data-i="8"><span class="num">09</span><span class="txt">Connect</span></button>
+    <button class="dock-item on" type="button" data-i="0">
+      <span class="num">01</span><span class="txt">Intro</span>
+    </button>
+
+    <button class="dock-item" type="button" data-i="1">
+      <span class="num">02</span><span class="txt">About</span>
+    </button>
+
+    <button class="dock-item" type="button" data-i="2">
+      <span class="num">03</span><span class="txt">Impact</span>
+    </button>
+
+    <button class="dock-item" type="button" data-i="3">
+      <span class="num">04</span><span class="txt">Projects I</span>
+    </button>
+
+    <button class="dock-item" type="button" data-i="4">
+      <span class="num">05</span><span class="txt">Projects II</span>
+    </button>
+
+    <button class="dock-item" type="button" data-i="5">
+      <span class="num">06</span><span class="txt">Experience</span>
+    </button>
+
+    <button class="dock-item" type="button" data-i="6">
+      <span class="num">07</span><span class="txt">Expertise</span>
+    </button>
+
+    <button class="dock-item" type="button" data-i="7">
+      <span class="num">08</span><span class="txt">Credentials</span>
+    </button>
+
+    <button class="dock-item" type="button" data-i="8">
+      <span class="num">09</span><span class="txt">Connect</span>
+    </button>
   </nav>
 
-  <button class="flip-zone flip-left off" id="flip-left" type="button">
-    <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="15 5 8 12 15 19"></polyline></svg></span>
+  <button
+    class="flip-zone flip-left off"
+    id="flip-left"
+    type="button"
+    aria-label="Previous page"
+  >
+    <span class="arrow">
+      <svg viewBox="0 0 24 24">
+        <polyline points="15 5 8 12 15 19"></polyline>
+      </svg>
+    </span>
   </button>
 
-  <button class="flip-zone flip-right" id="flip-right" type="button">
-    <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"></polyline></svg></span>
+  <button
+    class="flip-zone flip-right"
+    id="flip-right"
+    type="button"
+    aria-label="Next page"
+  >
+    <span class="arrow">
+      <svg viewBox="0 0 24 24">
+        <polyline points="9 5 16 12 9 19"></polyline>
+      </svg>
+    </span>
   </button>
 
   <div class="controls">
-    <div class="hint">
-      <span>Scroll the <b>mouse wheel</b> to turn pages</span>
-      <span class="sep"></span>
-      <span>or use <b>← →</b> / swipe</span>
-    </div>
-
     <div class="pager">
-      <button class="nav" id="prev" type="button">←</button>
-      <div class="counter"><span id="cur">01</span> <em>/ <span id="tot">09</span></em></div>
-      <button class="nav" id="next" type="button">→</button>
+      <button class="nav" id="prev" type="button" aria-label="Previous page">←</button>
+
+      <div class="counter">
+        <span id="cur">01</span>
+        <em>/ <span id="tot">09</span></em>
+      </div>
+
+      <button class="nav" id="next" type="button" aria-label="Next page">→</button>
     </div>
   </div>
 </div>
@@ -1374,9 +1515,20 @@ try{"anchor";}catch(e){}
 
 <section class="page active" id="p0" data-label="Intro">
   <div class="cover-wrap stagger">
-    <span class="badge"><span class="live"></span> Senior Process Automation Specialist</span>
-    <h1 class="h1">Banking expertise.<br><span class="grad">Digital impact.</span></h1>
-    <p class="lead">10+ years across banking operations, risk and compliance — fused with Power Platform, VBA and AI to deliver scalable, controlled and measurable automation.</p>
+    <span class="badge">
+      <span class="live"></span>
+      Senior Process Automation Specialist
+    </span>
+
+    <h1 class="h1">
+      Banking expertise.<br>
+      <span class="grad">Digital impact.</span>
+    </h1>
+
+    <p class="lead">
+      10+ years across banking operations, risk and compliance — fused with Power Platform, VBA and AI to deliver scalable, controlled and measurable automation.
+    </p>
+
     <div class="cover-tags">
       <span class="chip">Financial Services</span>
       <span class="chip">Power Platform</span>
@@ -1390,14 +1542,40 @@ try{"anchor";}catch(e){}
   <div class="split">
     <div class="about-head stagger">
       <span class="kicker">Professional positioning</span>
-      <h2 class="h2" style="margin-top:16px">More than an automation developer.</h2>
-      <p class="lead">My path ran from securities and treasury operations into markets compliance, collateral management, credit monitoring and enterprise automation — so I understand the process, the risk and the technology to improve both.</p>
+
+      <h2 class="h2" style="margin-top:16px">
+        More than an automation developer.
+      </h2>
+
+      <p class="lead">
+        My path ran from securities and treasury operations into markets compliance, collateral management, credit monitoring and enterprise automation — so I understand the process, the risk and the technology to improve both.
+      </p>
     </div>
 
     <div class="principles stagger">
-      <div class="glass principle"><div class="n">01</div><div><h3>Business-first thinking</h3><p>Translate operational needs into practical, outcome-focused workflows.</p></div></div>
-      <div class="glass principle"><div class="n">02</div><div><h3>Control-aware delivery</h3><p>Embed validation, traceability, data integrity and governance in every build.</p></div></div>
-      <div class="glass principle"><div class="n">03</div><div><h3>End-to-end ownership</h3><p>From discovery and development through deployment, training and adoption.</p></div></div>
+      <div class="glass principle">
+        <div class="n">01</div>
+        <div>
+          <h3>Business-first thinking</h3>
+          <p>Translate operational needs into practical, outcome-focused workflows.</p>
+        </div>
+      </div>
+
+      <div class="glass principle">
+        <div class="n">02</div>
+        <div>
+          <h3>Control-aware delivery</h3>
+          <p>Embed validation, traceability, data integrity and governance in every build.</p>
+        </div>
+      </div>
+
+      <div class="glass principle">
+        <div class="n">03</div>
+        <div>
+          <h3>End-to-end ownership</h3>
+          <p>From discovery and development through deployment, training and adoption.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1412,21 +1590,59 @@ try{"anchor";}catch(e){}
     <div class="glass cost-hero stagger">
       <div>
         <span class="lbl">Estimated external development cost avoided</span>
-        <div class="big"><span class="num" data-prefix="RM" data-value="130" data-suffix=",000+">RM0</span></div>
-        <p class="sub">Enterprise CSI Survey Platform and reusable OTP email authentication architected in-house.</p>
+
+        <div class="big">
+          <span class="num" data-prefix="RM" data-value="130" data-suffix=",000+">RM0</span>
+        </div>
+
+        <p class="sub">
+          Enterprise CSI Survey Platform and reusable OTP email authentication architected in-house.
+        </p>
       </div>
 
       <div class="cost-breakdown">
-        <div class="cost-item"><span class="amt">RM100k+</span><span><b>Scalable CSI Survey Platform</b><small>Portal, survey engine, AI classification and workflows</small></span></div>
-        <div class="cost-item"><span class="amt">RM30k+</span><span><b>Reusable OTP Authentication</b><small>Generation, expiry, resend, validation and audit</small></span></div>
+        <div class="cost-item">
+          <span class="amt">RM100k+</span>
+          <span>
+            <b>Scalable CSI Survey Platform</b>
+            <small>Portal, survey engine, AI classification and workflows</small>
+          </span>
+        </div>
+
+        <div class="cost-item">
+          <span class="amt">RM30k+</span>
+          <span>
+            <b>Reusable OTP Authentication</b>
+            <small>Generation, expiry, resend, validation and audit</small>
+          </span>
+        </div>
       </div>
     </div>
 
     <div class="metrics stagger">
-      <div class="glass metric"><span class="num" data-prefix="RM" data-value="130" data-suffix="k+">RM0</span><h3>Cost avoidance</h3><p>vs. external vendor build.</p></div>
-      <div class="glass metric"><span class="num" data-value="83" data-suffix="%">0%</span><h3>Faster PTW processing</h3><p>30 min → 5 min daily.</p></div>
-      <div class="glass metric"><span class="num" data-value="2" data-suffix=" hrs">0 hrs</span><h3>Saved every day</h3><p>Automated claims memo and approvals.</p></div>
-      <div class="glass metric"><span class="num" data-value="50" data-suffix=" min">0 min</span><h3>Saved per LNOD batch</h3><p>60 min → 10 min.</p></div>
+      <div class="glass metric">
+        <span class="num" data-prefix="RM" data-value="130" data-suffix="k+">RM0</span>
+        <h3>Cost avoidance</h3>
+        <p>vs. external vendor build.</p>
+      </div>
+
+      <div class="glass metric">
+        <span class="num" data-value="83" data-suffix="%">0%</span>
+        <h3>Faster PTW processing</h3>
+        <p>30 min → 5 min daily.</p>
+      </div>
+
+      <div class="glass metric">
+        <span class="num" data-value="2" data-suffix=" hrs">0 hrs</span>
+        <h3>Saved every day</h3>
+        <p>Automated claims memo and approvals.</p>
+      </div>
+
+      <div class="glass metric">
+        <span class="num" data-value="50" data-suffix=" min">0 min</span>
+        <h3>Saved per LNOD batch</h3>
+        <p>60 min → 10 min.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1439,10 +1655,53 @@ try{"anchor";}catch(e){}
     </div>
 
     <div class="proj-grid stagger">
-      <div class="glass proj"><div class="proj-top"><div class="proj-badge">CSI</div><span class="proj-cat">Power Pages · AI</span></div><h3>CSI Portal &amp; Survey Engine</h3><p>Scalable external survey portal with OTP access, AI feedback classification and a reusable multi-department Survey Engine.</p><div class="impact">3 days → under 2 hours reporting</div></div>
-      <div class="glass proj"><div class="proj-top"><div class="proj-badge">OTP</div><span class="proj-cat">Security · Auth</span></div><h3>OTP Email Authentication</h3><p>Reusable secure-access module for external portal participants.</p><div class="impact">Scalable across departments</div></div>
-      <div class="glass proj"><div class="proj-top"><div class="proj-badge">LNOD</div><span class="proj-cat">Legal · Ops</span></div><h3>Legal Notice of Demand Workflow</h3><p>SharePoint, Teams and VBA coordinating file preparation and approvals.</p><div class="impact">1 hour → 10 minutes per batch</div></div>
-      <div class="glass proj"><div class="proj-top"><div class="proj-badge">CPR</div><span class="proj-cat">Finance</span></div><h3>Claims Payment Request Automation</h3><p>Replaced manual memos and email approvals with Power Automate and SharePoint.</p><div class="impact">2 hours saved daily</div></div>
+      <div class="glass proj">
+        <div class="proj-top">
+          <div class="proj-badge">CSI</div>
+          <span class="proj-cat">Power Pages · AI</span>
+        </div>
+
+        <h3>CSI Portal &amp; Survey Engine</h3>
+
+        <p>
+          Scalable external survey portal with OTP access, AI feedback classification and a reusable multi-department Survey Engine.
+        </p>
+
+        <div class="impact">3 days → under 2 hours reporting</div>
+      </div>
+
+      <div class="glass proj">
+        <div class="proj-top">
+          <div class="proj-badge">OTP</div>
+          <span class="proj-cat">Security · Auth</span>
+        </div>
+
+        <h3>OTP Email Authentication</h3>
+        <p>Reusable secure-access module for external portal participants.</p>
+        <div class="impact">Scalable across departments</div>
+      </div>
+
+      <div class="glass proj">
+        <div class="proj-top">
+          <div class="proj-badge">LNOD</div>
+          <span class="proj-cat">Legal · Ops</span>
+        </div>
+
+        <h3>Legal Notice of Demand Workflow</h3>
+        <p>SharePoint, Teams and VBA coordinating file preparation and approvals.</p>
+        <div class="impact">1 hour → 10 minutes per batch</div>
+      </div>
+
+      <div class="glass proj">
+        <div class="proj-top">
+          <div class="proj-badge">CPR</div>
+          <span class="proj-cat">Finance</span>
+        </div>
+
+        <h3>Claims Payment Request Automation</h3>
+        <p>Replaced manual memos and email approvals with Power Automate and SharePoint.</p>
+        <div class="impact">2 hours saved daily</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1455,10 +1714,49 @@ try{"anchor";}catch(e){}
     </div>
 
     <div class="proj-grid stagger">
-      <div class="glass proj"><div class="proj-top"><div class="proj-badge">INV</div><span class="proj-cat">Investments</span></div><h3>PRISM INV Approval Flow</h3><p>Automated validation and audit logging.</p><div class="impact">Stronger validation and traceability</div></div>
-      <div class="glass proj"><div class="proj-top"><div class="proj-badge">PTW</div><span class="proj-cat">Facilities</span></div><h3>Permit to Work Digitisation</h3><p>Digital site-access submission and tracking.</p><div class="impact">83% faster daily processing</div></div>
-      <div class="glass proj"><div class="proj-top"><div class="proj-badge">RGO</div><span class="proj-cat">Governance</span></div><h3>Deployment Tracking &amp; Go-Live</h3><p>Centralised SharePoint release monitoring.</p><div class="impact">Follow-up reduced by 50%</div></div>
-      <div class="glass proj"><div class="proj-top"><div class="proj-badge">HR</div><span class="proj-cat">Human Resources</span></div><h3>Interview &amp; Onboarding Automation</h3><p>Structured interview and onboarding lifecycle tracking.</p><div class="impact">Expected 40% lifecycle reduction</div></div>
+      <div class="glass proj">
+        <div class="proj-top">
+          <div class="proj-badge">INV</div>
+          <span class="proj-cat">Investments</span>
+        </div>
+
+        <h3>PRISM INV Approval Flow</h3>
+        <p>Automated validation and audit logging.</p>
+        <div class="impact">Stronger validation and traceability</div>
+      </div>
+
+      <div class="glass proj">
+        <div class="proj-top">
+          <div class="proj-badge">PTW</div>
+          <span class="proj-cat">Facilities</span>
+        </div>
+
+        <h3>Permit to Work Digitisation</h3>
+        <p>Digital site-access submission and tracking.</p>
+        <div class="impact">83% faster daily processing</div>
+      </div>
+
+      <div class="glass proj">
+        <div class="proj-top">
+          <div class="proj-badge">RGO</div>
+          <span class="proj-cat">Governance</span>
+        </div>
+
+        <h3>Deployment Tracking &amp; Go-Live</h3>
+        <p>Centralised SharePoint release monitoring.</p>
+        <div class="impact">Follow-up reduced by 50%</div>
+      </div>
+
+      <div class="glass proj">
+        <div class="proj-top">
+          <div class="proj-badge">HR</div>
+          <span class="proj-cat">Human Resources</span>
+        </div>
+
+        <h3>Interview &amp; Onboarding Automation</h3>
+        <p>Structured interview and onboarding lifecycle tracking.</p>
+        <div class="impact">Expected 40% lifecycle reduction</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1471,11 +1769,40 @@ try{"anchor";}catch(e){}
     </div>
 
     <div class="timeline stagger">
-      <div class="tl"><p class="date">Feb 2025 · Present</p><h3>Senior Process Automation Specialist</h3><h4>CGC Malaysia · Transformation Office</h4><p>Designs and deploys automated workflows using Power Platform, VBA and AI.</p></div>
-      <div class="tl"><p class="date">Jul 2022 · Feb 2025</p><h3>Assistant Manager, Credit Monitoring</h3><h4>RHB Investment Bank Berhad</h4><p>Monitored trading exposure, collateral exceptions and regulatory reporting.</p></div>
-      <div class="tl"><p class="date">Nov 2018 · Jul 2022</p><h3>Senior Executive, Collateral Management</h3><h4>AmBank (M) Berhad</h4><p>Counterparty exposure, margin, reconciliation and collateral movements.</p></div>
-      <div class="tl"><p class="date">Jun 2014 · Jan 2017</p><h3>Senior Executive, Markets Compliance</h3><h4>AmBank (M) Berhad</h4><p>Control checks and remediation across Treasury, Compliance and Risk.</p></div>
-      <div class="tl"><p class="date">Nov 2013 · Jun 2014</p><h3>Executive, Collateral Management</h3><h4>AmBank (M) Berhad</h4><p>Built an Excel engine that improved reporting efficiency by 70%.</p></div>
+      <div class="tl">
+        <p class="date">Feb 2025 · Present</p>
+        <h3>Senior Process Automation Specialist</h3>
+        <h4>CGC Malaysia · Transformation Office</h4>
+        <p>Designs and deploys automated workflows using Power Platform, VBA and AI.</p>
+      </div>
+
+      <div class="tl">
+        <p class="date">Jul 2022 · Feb 2025</p>
+        <h3>Assistant Manager, Credit Monitoring</h3>
+        <h4>RHB Investment Bank Berhad</h4>
+        <p>Monitored trading exposure, collateral exceptions and regulatory reporting.</p>
+      </div>
+
+      <div class="tl">
+        <p class="date">Nov 2018 · Jul 2022</p>
+        <h3>Senior Executive, Collateral Management</h3>
+        <h4>AmBank (M) Berhad</h4>
+        <p>Counterparty exposure, margin, reconciliation and collateral movements.</p>
+      </div>
+
+      <div class="tl">
+        <p class="date">Jun 2014 · Jan 2017</p>
+        <h3>Senior Executive, Markets Compliance</h3>
+        <h4>AmBank (M) Berhad</h4>
+        <p>Control checks and remediation across Treasury, Compliance and Risk.</p>
+      </div>
+
+      <div class="tl">
+        <p class="date">Nov 2013 · Jun 2014</p>
+        <h3>Executive, Collateral Management</h3>
+        <h4>AmBank (M) Berhad</h4>
+        <p>Built an Excel engine that improved reporting efficiency by 70%.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1488,12 +1815,68 @@ try{"anchor";}catch(e){}
     </div>
 
     <div class="exp-grid stagger">
-      <div class="glass exp"><div class="ic">PA</div><h3>Automation &amp; Delivery</h3><div class="chips"><span class="chip">Power Automate</span><span class="chip">Power Pages</span><span class="chip">Copilot Studio</span><span class="chip">SharePoint</span><span class="chip">VBA</span></div></div>
-      <div class="glass exp"><div class="ic">RG</div><h3>Risk &amp; Governance</h3><div class="chips"><span class="chip">Credit Monitoring</span><span class="chip">Collateral</span><span class="chip">Compliance</span></div></div>
-      <div class="glass exp"><div class="ic">PX</div><h3>Process Excellence</h3><div class="chips"><span class="chip">Workflow Design</span><span class="chip">Process Mapping</span><span class="chip">SLA / TAT</span></div></div>
-      <div class="glass exp"><div class="ic">SL</div><h3>Leadership &amp; Enablement</h3><div class="chips"><span class="chip">Technical Translation</span><span class="chip">Train-the-Trainer</span><span class="chip">Mentorship</span></div></div>
-      <div class="glass exp"><div class="ic">BK</div><h3>Banking Platforms</h3><div class="chips"><span class="chip">FRA</span><span class="chip">AS400 BOS</span><span class="chip">Rebix</span><span class="chip">TradeSmart</span></div></div>
-      <div class="glass exp"><div class="ic">CO</div><h3>Communication</h3><div class="chips"><span class="chip">English</span><span class="chip">Malay</span><span class="chip">Business Writing</span></div></div>
+      <div class="glass exp">
+        <div class="ic">PA</div>
+        <h3>Automation &amp; Delivery</h3>
+        <div class="chips">
+          <span class="chip">Power Automate</span>
+          <span class="chip">Power Pages</span>
+          <span class="chip">Copilot Studio</span>
+          <span class="chip">SharePoint</span>
+          <span class="chip">VBA</span>
+        </div>
+      </div>
+
+      <div class="glass exp">
+        <div class="ic">RG</div>
+        <h3>Risk &amp; Governance</h3>
+        <div class="chips">
+          <span class="chip">Credit Monitoring</span>
+          <span class="chip">Collateral</span>
+          <span class="chip">Compliance</span>
+        </div>
+      </div>
+
+      <div class="glass exp">
+        <div class="ic">PX</div>
+        <h3>Process Excellence</h3>
+        <div class="chips">
+          <span class="chip">Workflow Design</span>
+          <span class="chip">Process Mapping</span>
+          <span class="chip">SLA / TAT</span>
+        </div>
+      </div>
+
+      <div class="glass exp">
+        <div class="ic">SL</div>
+        <h3>Leadership &amp; Enablement</h3>
+        <div class="chips">
+          <span class="chip">Technical Translation</span>
+          <span class="chip">Train-the-Trainer</span>
+          <span class="chip">Mentorship</span>
+        </div>
+      </div>
+
+      <div class="glass exp">
+        <div class="ic">BK</div>
+        <h3>Banking Platforms</h3>
+        <div class="chips">
+          <span class="chip">FRA</span>
+          <span class="chip">AS400 BOS</span>
+          <span class="chip">Rebix</span>
+          <span class="chip">TradeSmart</span>
+        </div>
+      </div>
+
+      <div class="glass exp">
+        <div class="ic">CO</div>
+        <h3>Communication</h3>
+        <div class="chips">
+          <span class="chip">English</span>
+          <span class="chip">Malay</span>
+          <span class="chip">Business Writing</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1506,8 +1889,17 @@ try{"anchor";}catch(e){}
     </div>
 
     <div class="cred-grid stagger">
-      <div class="glass cred"><p class="lbl">Academic qualification</p><h3>BA (Hons.) Business &amp; Entrepreneurship Development</h3><p>UNITAR University College Kuala Lumpur. Grade A / First Class.</p></div>
-      <div class="glass cred"><p class="lbl">Technical development</p><h3>Microsoft Power Platform Workflow Design</h3><p>Advanced workflow automation and developer training.</p></div>
+      <div class="glass cred">
+        <p class="lbl">Academic qualification</p>
+        <h3>BA (Hons.) Business &amp; Entrepreneurship Development</h3>
+        <p>UNITAR University College Kuala Lumpur. Grade A / First Class.</p>
+      </div>
+
+      <div class="glass cred">
+        <p class="lbl">Technical development</p>
+        <h3>Microsoft Power Platform Workflow Design</h3>
+        <p>Advanced workflow automation and developer training.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1515,15 +1907,27 @@ try{"anchor";}catch(e){}
 <section class="page" id="p8" data-label="Connect">
   <div class="contact-wrap stagger">
     <span class="kicker">Let’s connect</span>
-    <h2 class="h2">Let’s connect and create <span class="grad">digital impact.</span></h2>
-    <p class="lead">Interested in automation, digital transformation, Power Platform, process optimisation, or enterprise AI solutions?</p>
-    <p class="sig">© <span id="year"></span> Darren Bartolome Victorino · Banking · Risk · Automation · AI</p>
+
+    <h2 class="h2">
+      Let’s connect and create
+      <span class="grad">digital impact.</span>
+    </h2>
+
+    <p class="lead">
+      Interested in automation, digital transformation, Power Platform, process optimisation, or enterprise AI solutions?
+    </p>
+
+    <p class="sig">
+      © <span id="year"></span> Darren Bartolome Victorino · Banking · Risk · Automation · AI
+    </p>
   </div>
 </section>
 
 </div>
 
-<div class="toast" id="toast"><span id="toastMsg">Link copied</span></div>
+<div class="toast" id="toast">
+  <span id="toastMsg">Link copied</span>
+</div>
 
 <script>
 "use strict";
@@ -1547,6 +1951,7 @@ try{"anchor";}catch(e){}
   var dockClose=document.getElementById("dockClose");
   var dockItems=Array.prototype.slice.call(document.querySelectorAll(".dock-item"));
   var toggleNum=document.getElementById("toggleNum");
+  var year=document.getElementById("year");
 
   function pad(n){
     return (n<10?"0":"")+n;
@@ -1557,12 +1962,19 @@ try{"anchor";}catch(e){}
   }
 
   totEl.textContent=pad(total);
-  document.getElementById("year").textContent=new Date().getFullYear();
+
+  if(year){
+    year.textContent=new Date().getFullYear();
+  }
 
   function updateChrome(){
     curEl.textContent=pad(cur+1);
-    toggleNum.textContent=pad(cur+1)+"/"+pad(total);
-    prog.style.width=((cur)/(total-1)*100)+"%";
+
+    if(toggleNum){
+      toggleNum.textContent=pad(cur+1)+"/"+pad(total);
+    }
+
+    prog.style.width=total>1?((cur/(total-1))*100)+"%":"100%";
 
     prev.disabled=cur===0;
     next.disabled=cur===total-1;
@@ -1579,9 +1991,15 @@ try{"anchor";}catch(e){}
   }
 
   function closeDock(){
-    dock.classList.remove("open");
+    if(dock){
+      dock.classList.remove("open");
+    }
+
     document.body.classList.remove("dock-open");
-    dockToggle.setAttribute("aria-expanded","false");
+
+    if(dockToggle){
+      dockToggle.setAttribute("aria-expanded","false");
+    }
   }
 
   function openDock(){
@@ -1595,11 +2013,26 @@ try{"anchor";}catch(e){}
     dockToggle.setAttribute("aria-expanded","true");
   }
 
+  function settle(){
+    pages.forEach(function(page,index){
+      page.classList.remove("flip-out","flip-in","hold");
+      page.classList.toggle("active",index===cur);
+    });
+
+    pages[cur].scrollTop=0;
+    busy=false;
+  }
+
   function go(index){
-    if(busy)return;
+    if(busy){
+      return;
+    }
 
     index=Math.max(0,Math.min(total-1,index));
-    if(index===cur)return;
+
+    if(index===cur){
+      return;
+    }
 
     var old=cur;
     var forward=index>old;
@@ -1622,38 +2055,41 @@ try{"anchor";}catch(e){}
     }
 
     pages[cur].scrollTop=0;
+
     updateChrome();
     runCounters();
 
-    setTimeout(function(){
-      pages.forEach(function(page,i){
-        page.classList.remove("flip-out","flip-in","hold");
-        page.classList.toggle("active",i===cur);
-      });
-
-      busy=false;
-    },900);
+    setTimeout(settle,900);
   }
 
-  function nextPage(){go(cur+1)}
-  function previousPage(){go(cur-1)}
+  function nextPage(){
+    go(cur+1);
+  }
+
+  function previousPage(){
+    go(cur-1);
+  }
 
   prev.addEventListener("click",previousPage);
   next.addEventListener("click",nextPage);
   flipLeft.addEventListener("click",previousPage);
   flipRight.addEventListener("click",nextPage);
 
-  dockToggle.addEventListener("click",function(e){
-    e.stopPropagation();
+  if(dockToggle){
+    dockToggle.addEventListener("click",function(event){
+      event.stopPropagation();
 
-    if(dock.classList.contains("open")){
-      closeDock();
-    }else{
-      openDock();
-    }
-  });
+      if(dock.classList.contains("open")){
+        closeDock();
+      }else{
+        openDock();
+      }
+    });
+  }
 
-  dockClose.addEventListener("click",closeDock);
+  if(dockClose){
+    dockClose.addEventListener("click",closeDock);
+  }
 
   dockItems.forEach(function(item){
     item.addEventListener("click",function(){
@@ -1662,26 +2098,31 @@ try{"anchor";}catch(e){}
     });
   });
 
-  document.addEventListener("click",function(e){
+  document.addEventListener("click",function(event){
     if(
+      dock &&
       dock.classList.contains("open") &&
-      !dock.contains(e.target) &&
-      !dockToggle.contains(e.target)
+      !dock.contains(event.target) &&
+      (!dockToggle||!dockToggle.contains(event.target))
     ){
       closeDock();
     }
   });
 
-  document.addEventListener("keydown",function(e){
-    if(e.key==="ArrowRight"||e.key==="PageDown"){
+  document.addEventListener("keydown",function(event){
+    if(event.key==="ArrowRight"||event.key==="PageDown"){
+      event.preventDefault();
       nextPage();
-    }else if(e.key==="ArrowLeft"||e.key==="PageUp"){
+    }else if(event.key==="ArrowLeft"||event.key==="PageUp"){
+      event.preventDefault();
       previousPage();
-    }else if(e.key==="Escape"){
+    }else if(event.key==="Escape"){
       closeDock();
-    }else if(e.key==="Home"){
+    }else if(event.key==="Home"){
+      event.preventDefault();
       go(0);
-    }else if(e.key==="End"){
+    }else if(event.key==="End"){
+      event.preventDefault();
       go(total-1);
     }
   });
@@ -1689,14 +2130,14 @@ try{"anchor";}catch(e){}
   var sx=0;
   var sy=0;
 
-  deck.addEventListener("touchstart",function(e){
-    sx=e.changedTouches[0].clientX;
-    sy=e.changedTouches[0].clientY;
+  deck.addEventListener("touchstart",function(event){
+    sx=event.changedTouches[0].clientX;
+    sy=event.changedTouches[0].clientY;
   },{passive:true});
 
-  deck.addEventListener("touchend",function(e){
-    var dx=e.changedTouches[0].clientX-sx;
-    var dy=e.changedTouches[0].clientY-sy;
+  deck.addEventListener("touchend",function(event){
+    var dx=event.changedTouches[0].clientX-sx;
+    var dy=event.changedTouches[0].clientY-sy;
 
     if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)){
       if(dx<0){
@@ -1721,25 +2162,60 @@ try{"anchor";}catch(e){}
 
   var toast=document.getElementById("toast");
   var toastMsg=document.getElementById("toastMsg");
+  var toastTimer=null;
 
   function showToast(message){
     toastMsg.textContent=message;
     toast.classList.add("show");
 
-    setTimeout(function(){
+    if(toastTimer){
+      clearTimeout(toastTimer);
+    }
+
+    toastTimer=setTimeout(function(){
       toast.classList.remove("show");
     },2200);
   }
 
+  function fallbackCopy(text,message){
+    var textarea=document.createElement("textarea");
+
+    textarea.value=text;
+    textarea.setAttribute("readonly","");
+    textarea.style.position="fixed";
+    textarea.style.top="-9999px";
+    textarea.style.opacity="0";
+
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    var copied=false;
+
+    try{
+      copied=document.execCommand("copy");
+    }catch(error){
+      copied=false;
+    }
+
+    document.body.removeChild(textarea);
+
+    if(copied){
+      showToast(message);
+    }else{
+      window.prompt("Copy this link:",text);
+    }
+  }
+
   function copyText(text,message){
-    if(navigator.clipboard&&navigator.clipboard.writeText){
+    if(navigator.clipboard&&typeof navigator.clipboard.writeText==="function"){
       navigator.clipboard.writeText(text).then(function(){
         showToast(message);
       }).catch(function(){
-        window.prompt("Copy this link:",text);
+        fallbackCopy(text,message);
       });
     }else{
-      window.prompt("Copy this link:",text);
+      fallbackCopy(text,message);
     }
   }
 
@@ -1760,19 +2236,21 @@ try{"anchor";}catch(e){}
   function runCounters(){
     var nums=pages[cur].querySelectorAll(".num[data-value]");
 
-    nums.forEach(function(el){
-      var target=Number(el.getAttribute("data-value"))||0;
-      var prefix=el.getAttribute("data-prefix")||"";
-      var suffix=el.getAttribute("data-suffix")||"";
+    nums.forEach(function(element){
+      var target=Number(element.getAttribute("data-value"))||0;
+      var prefix=element.getAttribute("data-prefix")||"";
+      var suffix=element.getAttribute("data-suffix")||"";
       var start=null;
 
       function step(timestamp){
-        if(!start)start=timestamp;
+        if(start===null){
+          start=timestamp;
+        }
 
         var progress=Math.min((timestamp-start)/1200,1);
         var value=Math.round(target*(1-Math.pow(1-progress,3)));
 
-        el.textContent=prefix+value+suffix;
+        element.textContent=prefix+value+suffix;
 
         if(progress<1){
           requestAnimationFrame(step);
