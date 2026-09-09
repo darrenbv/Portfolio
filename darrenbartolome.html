@@ -19,7 +19,6 @@
   --r-lg:26px;--r-md:18px;--r-sm:12px;
   --ease:cubic-bezier(.16,.84,.34,1);
   --ease-io:cubic-bezier(.65,0,.35,1);
-  --ease-book:cubic-bezier(.42,.04,.28,1);
   --pad:clamp(26px,5vw,84px);
   --top-clear:132px;--bottom-clear:112px;
 }
@@ -611,8 +610,6 @@ button{
   inset:0;
   z-index:10;
   overflow:hidden;
-  perspective:2200px;
-  perspective-origin:0 50%;
   transition:left .3s var(--ease);
 }
 
@@ -630,8 +627,8 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   overflow-y:auto;
   opacity:0;
   visibility:hidden;
-  transform-origin:left center;
   backface-visibility:hidden;
+  transition:opacity .38s var(--ease-io),visibility .38s;
 }
 
 #p0,#p8{
@@ -646,43 +643,13 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
   visibility:visible;
 }
 
-.page.hold{
-  z-index:1;
-  opacity:1;
-  visibility:visible;
-}
-
-.page.flip-out{
-  z-index:6;
-  opacity:1;
-  visibility:visible;
-  animation:leafOut .9s var(--ease-book) forwards;
-}
-
-.page.flip-in{
-  z-index:6;
-  opacity:1;
-  visibility:visible;
-  animation:leafIn .9s var(--ease-book) forwards;
-}
-
-@keyframes leafOut{
-  from{transform:rotateY(0)}
-  to{transform:rotateY(-180deg)}
-}
-
-@keyframes leafIn{
-  from{transform:rotateY(-180deg)}
-  to{transform:rotateY(0)}
-}
-
-.page.active .stagger>*{animation:rise .6s var(--ease-io) both}
-.page.active .stagger>*:nth-child(1){animation-delay:.30s}
-.page.active .stagger>*:nth-child(2){animation-delay:.37s}
-.page.active .stagger>*:nth-child(3){animation-delay:.44s}
-.page.active .stagger>*:nth-child(4){animation-delay:.51s}
-.page.active .stagger>*:nth-child(5){animation-delay:.58s}
-.page.active .stagger>*:nth-child(6){animation-delay:.65s}
+.page.active .stagger>*{animation:rise .55s var(--ease-io) both}
+.page.active .stagger>*:nth-child(1){animation-delay:.06s}
+.page.active .stagger>*:nth-child(2){animation-delay:.12s}
+.page.active .stagger>*:nth-child(3){animation-delay:.18s}
+.page.active .stagger>*:nth-child(4){animation-delay:.24s}
+.page.active .stagger>*:nth-child(5){animation-delay:.30s}
+.page.active .stagger>*:nth-child(6){animation-delay:.36s}
 
 @keyframes rise{
   from{opacity:0;transform:translateY(18px)}
@@ -1252,7 +1219,7 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 @media print{
   html,body{height:auto;overflow:visible}
   .chrome,.ambient,.grid-overlay,.toast{display:none!important}
-  .deck{position:static;perspective:none}
+  .deck{position:static}
 
   .page{
     position:static;
@@ -1267,10 +1234,6 @@ body.dock-open .topbar{padding-left:calc(clamp(18px,4vw,42px) + 244px)}
 </head>
 
 <body class="light">
-
-<script>
-try{"anchor";}catch(e){}
-</script>
 
 <div class="ambient"></div>
 <div class="grid-overlay"></div>
@@ -1705,28 +1668,28 @@ try{"anchor";}catch(e){}
       <div class="tl">
         <p class="date">Jul 2022 · Feb 2025</p>
         <h3>Assistant Manager, Credit Monitoring</h3>
-        <h4>RHB Investment Bank Berhad</h4>
+        <h4>RHB Investment Bank Berhad · Investment Banking Credit Control</h4>
         <p>Monitored trading exposure, collateral exceptions and regulatory reporting.</p>
       </div>
 
       <div class="tl">
         <p class="date">Nov 2018 · Jul 2022</p>
         <h3>Senior Executive, Collateral Management</h3>
-        <h4>AmBank (M) Berhad</h4>
+        <h4>AmBank (M) Berhad · Group Treasury &amp; Markets</h4>
         <p>Counterparty exposure, margin, reconciliation and collateral movements.</p>
       </div>
 
       <div class="tl">
         <p class="date">Jun 2014 · Jan 2017</p>
         <h3>Senior Executive, Markets Compliance</h3>
-        <h4>AmBank (M) Berhad</h4>
+        <h4>AmBank (M) Berhad · Group Treasury &amp; Markets</h4>
         <p>Control checks and remediation across Treasury, Compliance and Risk.</p>
       </div>
 
       <div class="tl">
         <p class="date">Nov 2013 · Jun 2014</p>
         <h3>Executive, Collateral Management</h3>
-        <h4>AmBank (M) Berhad</h4>
+        <h4>AmBank (M) Berhad · Group Treasury &amp; Markets</h4>
         <p>Built an Excel engine that improved reporting efficiency by 70%.</p>
       </div>
     </div>
@@ -1863,7 +1826,6 @@ try{"anchor";}catch(e){}
   var pages=Array.prototype.slice.call(deck.querySelectorAll(".page"));
   var total=pages.length;
   var cur=0;
-  var busy=false;
 
   var prev=document.getElementById("prev");
   var next=document.getElementById("next");
@@ -1934,53 +1896,23 @@ try{"anchor";}catch(e){}
     dockToggle.setAttribute("aria-expanded","true");
   }
 
-  function settle(){
-    pages.forEach(function(page,index){
-      page.classList.remove("flip-out","flip-in","hold");
-      page.classList.toggle("active",index===cur);
-    });
-
-    pages[cur].scrollTop=0;
-    busy=false;
-  }
-
   function go(index){
-    if(busy){
-      return;
-    }
-
     index=Math.max(0,Math.min(total-1,index));
 
     if(index===cur){
       return;
     }
 
-    var old=cur;
-    var forward=index>old;
-
     cur=index;
-    busy=true;
 
-    pages.forEach(function(page){
-      page.classList.remove("flip-out","flip-in","hold");
+    pages.forEach(function(page,i){
+      page.classList.toggle("active",i===cur);
     });
-
-    if(forward){
-      pages[index].classList.add("active");
-      pages[old].classList.remove("active");
-      pages[old].classList.add("flip-out");
-    }else{
-      pages[old].classList.remove("active");
-      pages[old].classList.add("hold");
-      pages[index].classList.add("active","flip-in");
-    }
 
     pages[cur].scrollTop=0;
 
     updateChrome();
     runCounters();
-
-    setTimeout(settle,900);
   }
 
   function nextPage(){
@@ -2029,43 +1961,10 @@ try{"anchor";}catch(e){}
   });
 
   document.addEventListener("keydown",function(event){
-    if(event.key==="ArrowRight"||event.key==="PageDown"){
-      event.preventDefault();
-      nextPage();
-    }else if(event.key==="ArrowLeft"||event.key==="PageUp"){
-      event.preventDefault();
-      previousPage();
-    }else if(event.key==="Escape"){
+    if(event.key==="Escape"){
       closeDock();
-    }else if(event.key==="Home"){
-      event.preventDefault();
-      go(0);
-    }else if(event.key==="End"){
-      event.preventDefault();
-      go(total-1);
     }
   });
-
-  var sx=0;
-  var sy=0;
-
-  deck.addEventListener("touchstart",function(event){
-    sx=event.changedTouches[0].clientX;
-    sy=event.changedTouches[0].clientY;
-  },{passive:true});
-
-  deck.addEventListener("touchend",function(event){
-    var dx=event.changedTouches[0].clientX-sx;
-    var dy=event.changedTouches[0].clientY-sy;
-
-    if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)){
-      if(dx<0){
-        nextPage();
-      }else{
-        previousPage();
-      }
-    }
-  },{passive:true});
 
   window.addEventListener("resize",function(){
     if(isMobile()){
